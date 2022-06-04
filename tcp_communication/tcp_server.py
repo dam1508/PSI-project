@@ -3,9 +3,10 @@ from encryption.encrypt import decrypt_data
 
 """ This class defines a C-like struct """
 
+PORT = 2300
+
 
 def main():
-    PORT = 2300
     server_addr = ('localhost', PORT)
     ssock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print("Socket created")
