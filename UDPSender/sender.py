@@ -16,15 +16,15 @@ class Payload(Structure):
 def main():
     msgFromClient = 'a'
     bytesToSend = str.encode(msgFromClient)
-    serverAddressPort = ("127.0.0.1", 20001)
+    serverAddressPort = ("localhost", 7999)
 
-    bufferSize = 1024
+    bufferSize = 512
 
     # Create a UDP socket at client side
 
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-
+    print(f"Sending {msgFromClient}")
     UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)

@@ -1,7 +1,7 @@
 {
-    "TCP_HOST": "2620:9b::191f:4797",
+    "TCP_HOST": "localhost",
     "TCP_PORT": 8000,
-    "HOST_OUT": "25.31.71.151",
+    "HOST_OUT": "localhost",
     "PORT_OUT": 8001,
     "XOR_KEY": "P"
 }
