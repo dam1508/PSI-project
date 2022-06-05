@@ -1,9 +1,8 @@
 import socket
 from encryption.encrypt import decrypt_data
 
-""" This class defines a C-like struct """
 
-PORT = 2300
+PORT = 2400
 
 
 def main():
