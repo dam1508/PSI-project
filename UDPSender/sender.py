@@ -9,6 +9,10 @@ class Payload(Structure):
                 ("temp", c_float)]
 
 
+
+
+
+
 def main():
     msgFromClient = 'a'
     bytesToSend = str.encode(msgFromClient)
