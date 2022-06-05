@@ -26,10 +26,10 @@ def main():
 
     print(f"Sending {msgFromClient}")
     UDPClientSocket.sendto(bytesToSend, serverAddressPort)
-
+    print("xd")
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 
-    msg = "Message from Server {}".format(msgFromServer[0])
+    msg = "Message from Server {}".format(msgFromServer[0].decode())
 
     print(msg)
 
