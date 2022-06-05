@@ -6,26 +6,22 @@ import errno
 from readJSON import readConfigFile
 from encryption.encrypt import decrypt_data, encrypt_data
 
-HOSTipv4 = 'localhost'
-BUFSIZE = 512
-
 
 def Work():
-    return True
+  return True
 
+SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
 
-HOST, PORT, HOST_OUT, PORT_OUT, XOR_KEY = readConfigFile("config.json")
-
-print("Will listen on ", HOST, ":", PORT)
+print("Will listen on ", TCP_HOST, ":", TCP_PORT)
 
 # tcp socket for ipv6
 socket_tcp_ipv6 = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-socket_tcp_ipv6.bind((HOST, PORT))
+socket_tcp_ipv6.bind((TCP_HOST, TCP_PORT))
 socket_tcp_ipv6.listen(5)
 
 # tcp socket for ipv4
 socket_tcp_ipv4 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socket_tcp_ipv4.bind((HOSTipv4, PORT))
+socket_tcp_ipv4.bind((TCP_HOST, TCP_PORT))
 socket_tcp_ipv4.listen(5)
 
 # udp socket

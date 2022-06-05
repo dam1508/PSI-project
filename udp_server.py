@@ -3,20 +3,15 @@
 
 import socket
 import sys
+from readJSON import readConfigFile
 
-HOST = 'localhost'  # Standard loopback interface address (localhost)
-# BUFSIZE = 512
-BUFSIZE = 512
-if len(sys.argv) < 2:
-    print("no port, using 8001")
-    port = 8001
-else:
-    port = int(sys.argv[1])
 
-print("Will listen on ", HOST, ":", port)
+SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
+
+print("Will listen on ", HOST_OUT, ":", PORT_OUT)
 
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-    s.bind((HOST, port))
+    s.bind((HOST_OUT, PORT_OUT))
     i = 1
     while True:
         data_address = s.recvfrom(BUFSIZE)

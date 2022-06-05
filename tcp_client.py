@@ -2,14 +2,12 @@ import socket
 from readJSON import readConfigFile
 from encryption.encrypt import decrypt_data, encrypt_data
 
-BUFSIZE = 512
-PORT = 7999
 
 
 def main():
-    HOST, PORT, HOST_OUT, PORT_OUT, XOR_KEY = readConfigFile("config.json")
-    server_addr = ('localhost', PORT)
-    server_address_port = ('localhost', 7999)
+    SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
+    server_addr = (TCP_HOST, TCP_PORT)
+    server_address_port = (SENDER_HOST, SENDER_PORT)
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(server_addr)
 
@@ -19,7 +17,7 @@ def main():
     while True:
 
         # print("Server listening on port {:d}".format(PORT))
-        data_address = socketUDP.recvfrom(512)
+        data_address = socketUDP.recvfrom(BUFSIZE)
         data = data_address[0]
         address = data_address[1]
         sock.sendall(encrypt_data(data.decode(), XOR_KEY).encode())

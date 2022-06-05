@@ -1,7 +1,10 @@
 {
+    "SENDER_HOST": "localhost",
+    "SENDER_PORT": 7999,
     "TCP_HOST": "localhost",
     "TCP_PORT": 8000,
     "HOST_OUT": "localhost",
     "PORT_OUT": 8001,
+    "BUFSIZE": 512,
     "XOR_KEY": "P"
 }
