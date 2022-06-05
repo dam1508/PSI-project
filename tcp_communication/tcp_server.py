@@ -2,7 +2,7 @@ import socket
 from encryption.encrypt import decrypt_data
 
 
-PORT = 2300
+PORT = 2400
 
 
 def main():
