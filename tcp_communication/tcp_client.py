@@ -1,7 +1,6 @@
 import socket
 from encryption.encrypt import encrypt_data
 
-""" This class defines a C-like struct """
 
 DATA = "abccabccabccabccabccc"
 
