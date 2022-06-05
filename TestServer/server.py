@@ -20,49 +20,29 @@ class Payload(Structure):
 
 
 def main():
-    PORT = 2300
-    server_addr = ('localhost', PORT)
-    ssock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-    print("Socket created")
-    ssock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+    serverAddress = "127.0.0.1"
+    serverPort = 20001
+    bufferSize = 1024
+    serverMessage = "Connected to UDP Server, Welcome!"
+    bytesToSend = str.encode(serverMessage)
 
-    try:
-        # bind the server socket and listen
-        ssock.bind(server_addr)
-        print("Bind done")
-        ssock.listen(3)
-        print("Server listening on port {:d}".format(PORT))
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as serverSocket:
+        serverSocket.bind((serverAddress, serverPort))
 
-        while True:
-            csock, client_address = ssock.accept()
-            print("Accepted connection from {:s}".format(client_address[0]))
+        print("UDP Server up and listening")
 
-            buff = csock.recv(15)
-            while buff:
-                print("\nReceived {:d} bytes".format(len(buff)))
-                #payload_in = Payload.from_buffer_copy(buff)
-                #print("Received contents id={:d}, counter={:d}, temp={:f}".format(payload_in.id,
-                #                                            payload_in.counter,
-                #                                            payload_in.temp))
-                print(f"Received contents {buff}")
-                print("Sending it back.. ", end='')
-                #nsent = csock.send(payload_in)
-                #print("Sent {:d} bytes".format(nsent))
-                buff = csock.recv(512)
+        while (True):
+            dataAddress = serverSocket.recvfrom(bufferSize)
+            message = dataAddress[0]
+            address = dataAddress[1]
 
-            print("Closing connection to client")
-            print("----------------------------")
-            csock.close()
+            clientMessage = "Message :{}".format(message)
+            clientIP = "Client IP:{}".format(address)
 
-    except AttributeError as ae:
-        print("Error creating the socket: {}".format(ae))
-    except socket.error as se:
-        print("Exception on socket: {}".format(se))
-    except KeyboardInterrupt:
-        ssock.close()
-    finally:
-        print("Closing socket")
-        ssock.close()
+            # print(clientMessage)
+            print("Received message")
+
+            serverSocket.sendto(bytesToSend, address)
 
 
 if __name__ == "__main__":

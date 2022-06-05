@@ -14,25 +14,24 @@ class Payload(Structure):
 
 
 def main():
-    server_addr = ('localhost', 2300)
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    # s.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+    msgFromClient = 'a'
+    bytesToSend = str.encode(msgFromClient)
+    serverAddressPort = ("127.0.0.1", 20001)
 
-    try:
-        #s.connect(server_addr)
-        #print("Connected to {:s}".format(repr(server_addr)))
-        print("")
-        payload_out = "abcdaaaaaaaaaaaaaaaa".encode()
-        s.sendto(payload_out, server_addr)
+    bufferSize = 1024
 
-    except AttributeError as ae:
-        print("Error creating the socket: {}".format(ae))
-    except socket.error as se:
-        print("Exception on socket: {}".format(se))
-    finally:
-        print("Closing socket")
-        s.close()
+    # Create a UDP socket at client side
 
+    UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+
+    UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+
+    msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+
+    msg = "Message from Server {}".format(msgFromServer[0])
+
+    print(msg)
 
 if __name__ == "__main__":
     main()
