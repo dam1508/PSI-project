@@ -3,7 +3,6 @@ from readJSON import readConfigFile
 from encryption.encrypt import decrypt_data, encrypt_data
 
 
-
 def main():
     SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
     server_addr = (TCP_HOST, TCP_PORT)
@@ -15,7 +14,6 @@ def main():
     socketUDP.bind(server_address_port)
 
     while True:
-
         # print("Server listening on port {:d}".format(PORT))
         data_address = socketUDP.recvfrom(BUFSIZE)
         data = data_address[0]
@@ -28,8 +26,8 @@ def main():
         data = decrypt_data(data.decode(), XOR_KEY)
         # print("DATA received after crypting", data)
 
-    # print("MSG", msg)
-    # print(decryptOrEncrypt(msg.decode(), XOR_KEY))
+        # print("MSG", msg)
+        # print(decryptOrEncrypt(msg.decode(), XOR_KEY))
         print("Sending data by UDP")
         socketUDP.sendto(data.encode(), address)
 

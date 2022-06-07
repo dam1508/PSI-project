@@ -1,10 +1,5 @@
-# simple Python socket UDP server
-# (C) G.Blinowski for PSI 2021
-
 import socket
-import sys
 from readJSON import readConfigFile
-
 
 SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
 

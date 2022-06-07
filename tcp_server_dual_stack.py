@@ -8,7 +8,8 @@ from encryption.encrypt import decrypt_data, encrypt_data
 
 
 def Work():
-  return True
+    return True
+
 
 SENDER_HOST, SENDER_PORT, TCP_HOST, TCP_PORT, HOST_OUT, PORT_OUT, BUFSIZE, XOR_KEY = readConfigFile("config.json")
 
