@@ -1,9 +1,9 @@
 {
-    "SENDER_HOST": "localhost",
-    "SENDER_PORT": 7999,
-    "TCP_HOST": "localhost",
-    "TCP_PORT": 8000,
-    "HOST_OUT": "localhost",
+    "TUNNEL_CLIENT_HOST": "localhost",
+    "TUNNEL_CLIENT_PORT": 7999,
+    "TUNNEL_SERVER_HOST": "25.31.71.151",
+    "TUNNEL_SERVER_PORT": 8000,
+    "HOST_OUT": "25.31.71.151",
     "PORT_OUT": 8001,
     "BUFSIZE": 512,
     "XOR_KEY": "P"
