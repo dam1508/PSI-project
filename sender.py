@@ -13,11 +13,11 @@ def main():
 
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-    print(f"Sending {msgFromClient}")
+    print(f"Sending: {msgFromClient}")
     UDPClientSocket.sendto(bytesToSend, serverAddressPort)
     msgFromServer = UDPClientSocket.recvfrom(BUFSIZE)
 
-    msg = "Message from Server {}".format(msgFromServer[0].decode())
+    msg = "Message from Server: {}".format(msgFromServer[0].decode())
 
     print(msg)
 
